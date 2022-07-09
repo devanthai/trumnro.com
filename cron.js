@@ -34,4 +34,3 @@ auto = () => {
     }, timeOut);
 }
 auto()
-auto()
