@@ -52,6 +52,14 @@ module.exports = async function (req, res, next) {
       req.user = { hanmuc: user.hanmuc, thanhtichngay: user.thanhtichngay, sdt: sdt, topup: user.topup, clan: user.clan, server: user.server, _id: user._id, name: name, avatar: user.avatar, kimcuong: user.kimcuong, vang: numberWithCommas(Math.round(vang)), isLogin: isLogin }
     }
     else {
+      cookie = req.cookies;
+      for (var prop in cookie) {
+        if (!cookie.hasOwnProperty(prop)) {
+          continue;
+        }
+        res.cookie(prop, '', { expires: new Date(0) });
+      }
+      req.session = null
       req.user = { isLogin: false }
     }
     return next();
